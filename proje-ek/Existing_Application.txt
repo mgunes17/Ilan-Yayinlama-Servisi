@@ -1,0 +1,15 @@
+İlan yayınlarının yapıldığı bazı web sayfaları mevcuttur. Bir çoğu işlevsel olarak yeterliliğe sahip olsa da hedef kitlesi öğrenciler
+olarak tasarlanmadığından soruna çözüm olamamaktadır.
+
+İlan Yayının Yapıldığı Yer		Açıklama	Öğrenciye özel      	Okul Çapında	İlan Kapsamı	Firma İlanları   Site Üzerinden Başvuru
+--------------------------  	--------    --------------------    ------------    ------------    ---------------  -------
+1-http://www.prs.yildiz.edu.tr/				Hayır					Evet			YTÜ personeli	Hayır				Hayır
+2-http://www.yildiz.edu.tr/duyurular/         Hayır                   Evet            Okul ile ilgili her durum Hayır     Hayır
+3-https://www.ce.yildiz.edu.tr/file/112/      Evet                    Hayır           Staj (BM)        Evet               Hayır
+4-https://www.ce.yildiz.edu.tr/file/315/      Evet                    Hayır           İş(BM)          Evet                Hayır
+5-http://www.kariyer.net/                     Hayır                   Hayır           İş Staj          Evet               Evet
+6-http://www.yenibiris.com/                   Hayır                   Hayır           İş Staj           Evet              Evet
+
+Yukarıda, mevcut bazı çözümler ele alınmış ve karşılaştırmalı bir şekilde incelenmiştir.
+Özetle, 1 ve 2 numaralı uygulamalar okul çapında olmasına rağmen öğrenci odaklı değildir; 3 ve 4 numaralı ilanlar ise okul genelini 
+değil sadece Bilgisayar Mühendisliği bölümünü kapsamaktadır; 1,2,3 ve 4 numaralı uygulamalardaki ilanlara uygulama üzerinden başvuru yapılamamaktadır; 5 ve 6 numaralı uygulamalar ise uygulama üzerinden bir çok düzenlemeye(cv oluşturma, arama yapma, başvuru vs) sahip olsa da öğrenci odaklı değildir ve okul içindeki ilanların yönetilmesini sağlamayacaktır.

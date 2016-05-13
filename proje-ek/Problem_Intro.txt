@@ -1,0 +1,6 @@
+Yıldız Teknik Üniversitesi öğrencilerine hitaben, okulun çeşitli panolarında ilanlar yayınlanmaktadır.
+Bu ilanlar sadece bir bölümün öğrencilerine hitap edebildiği gibi, tüm öğrencileri ilgilendiren ilanlar da olabilmektedir.
+Hatta zaman zaman akademisyenlere, öğrencilere duyurmaları için, mail yoluyla ilan yollanmaktadır.
+Mail yoluyla yollanan ilanlar kontrol edilebilir olmalarına rağmen 
+ek bir yük oluşturmaktadır. Panolarda yayınlanan ilanların ise uygunluklarının düzenli kontrol edilmesine olanak yoktur. Ayrıca her iki şekilde de ilanı yayınlayanlar, ilanın geri çekilmesi için bir teşebbüste bulunmamakta bu yüzden geçerliliği kalmayan ilanlar halen göz önünde kalmakta, (özellikle son geçerlilik tarihi bilgisi olmayan ilanlar) yanıltıcı olabilmektedir.
+Bu dağınık ilan yayınlama şeklinin önüne geçmek, kontrol edilebilir ilanlar yayınlatmak, öğrencilere daha sağlıklı bir şekilde ilan sunmak bir ihtiyaç haline gelmiştir.

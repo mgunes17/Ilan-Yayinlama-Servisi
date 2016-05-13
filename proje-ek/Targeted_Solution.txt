@@ -1,0 +1,11 @@
+Okul içinde yayınlanan her ilanın yönetimini sağlayacak bir web uygulaması geliştirilmesi düşünülmektedir. Geliştirilecek olan bu 
+web uygulaması, benzer çözümler dikkate alınarak tasarlanacaktır. Farklı çözümlerin olumlu ve olumsuz yanlarıyla birlikte, eksiklikleri 
+de düşünülerek, probleme özel bir çözüm üretilecektir. 
+Web uygulaması kullanıcı profilleri içerecektir. İlanı yayınlayanlar şirketler ve ilanı görecek olan öğrenciler kendi profillerini oluşturabileceklerdir. Öğrenciler istemeleri halinde sistem üzerinden başvuru yapabilecek ve yine sistem üzerinden ilan sahibi ile iletişime geçebilecektir. İlanlar içeriklerine göre filtrelenerek sorgulanabilecektir. Uygunsuz ilanın tespiti halinde kullanıcılara ilanı şikayet etme
+seçeneği tanınacaktır.
+Çözümde ayrıca bir de bağış sistemi olması düşünülmektedir. Buna göre şirketler, belirlenen miktarda bir bağış yaptıktan
+sonra ilanlarını yayınlayabileceklerdir. Bağışların kabul edilmesi, harcamaların yönetilmesi için sisteme "Bağış Kabul Birimi" altında 
+kullanıcılar dahil edilecektir. Bu birimler, okulun bağış kabul edebilen birimleri olacaktır.
+Bağış miktarlarının belirlenmesi, şikayet edilen ilanlar ile ilgilenilmesi, bağış kabul birimlerinin tanımlanabilmesi Sistem Yöneticisinin
+sorumluluğunda olacaktır. Diğer üç kullanıcı tipinde birden fazla kullanıcı olabilmesine rağmen sistem yöneticisi yalnız bir tane olabilir.
+Hedeflenen bu çözüm ile, öğrenci odaklı bir İlan Yayınlama Servisi oluşturulacak aynı zamanda ilanlar merkezi bir şekilde yönetilebilecektir.
