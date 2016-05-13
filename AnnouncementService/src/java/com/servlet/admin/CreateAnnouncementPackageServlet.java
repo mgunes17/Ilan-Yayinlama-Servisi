@@ -46,7 +46,7 @@ public class CreateAnnouncementPackageServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         session.setAttribute("olusturuldu", 1);
-        response.sendRedirect("admin/createannouncementpacket.jsp");
+        response.sendRedirect("admin/paket-olustur.jsp");
     }
 
 }

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "CreateDonationUnitServlet", urlPatterns = {"/createdonationunitservlet"})
 public class CreateDonationUnitServlet extends HttpServlet {
@@ -25,28 +26,23 @@ public class CreateDonationUnitServlet extends HttpServlet {
 
         //okunan form bilgisi Türkçe karaktere uygun hale getirildi
         request.setCharacterEncoding("UTF-8");
-        
+        HttpSession session = request.getSession();
         //Bağış kabul birimi özelliklerini oku
         DonationAcceptUnit dau = new DonationAcceptUnit();
         dau.setUnitName(request.getParameter("unit_name"));
-        dau.setUserName(request.getParameter("user_name"));
-        dau.setPassword(request.getParameter("password"));
-        dau.setUserTypeNo(1);
         dau.setBalance(0);
         
-        //Banka hesap bilgisi özelliklerini oku
-        BankAccountInfo bai  = new BankAccountInfo();
-        bai.setBankAccountNumber(Integer.parseInt(request.getParameter("account_number")));
-        bai.setBankName(request.getParameter("bank_name"));
-        bai.setBranchBankName(request.getParameter("name_of_branch"));
-        bai.setCurrency(Integer.parseInt(request.getParameter("currency")));
-        bai.setIban(request.getParameter("iban"));
-        bai.setOwnerUnitName(dau.getUnitName());
         
-        new DonationAcceptUnitDAO().saveUnit(dau);
-        new DonationAcceptUnitDAO().saveBankAccount(bai);
         
-        response.sendRedirect("admin/success.jsp");
+        if(new DonationAcceptUnitDAO().saveUnit(dau)){
+            session.setAttribute("vakifolusturuldu", 1);
+            session.setAttribute("dauUser", dau);
+        }
+        else{
+            session.setAttribute("vakifolusturuldu", 2);
+        }
+        
+        response.sendRedirect("admin/vakif-olustur.jsp");
     }
 
 }

@@ -57,7 +57,10 @@
                                 <td>
                                     <form method="post">
                                         <input type="hidden" name="packetId" value="${item.packetId}" />
-                                        <input type="submit" value="Sil" formaction="../deleteannouncementpacket">
+                                        <input type="submit" 
+                                               value="Sil" 
+                                               formaction="../deleteannouncementpacket"
+                                               onclick="return confirm('Paketi silmek istediğinize emin misiniz?')">
                                         <input type="submit" value="Düzenle" formaction="../updatepacket">
                                     </form>
                                 </td>

@@ -1,9 +1,12 @@
 package com.database;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +26,18 @@ public class BankAccountInfo implements Serializable {
     @Column(name="currency", nullable = false)
     private int currency;
 
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="id")
+    private DonationAcceptUnit unit;
+
+    public DonationAcceptUnit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(DonationAcceptUnit unit) {
+        this.unit = unit;
+    }
+    
     public int getCurrency() {
         return currency;
     }

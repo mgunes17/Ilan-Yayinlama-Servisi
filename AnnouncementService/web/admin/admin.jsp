@@ -10,13 +10,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <jsp:include page="html/head.html"/>
         <title>Yönetici Anasayfa</title>
 </head>
 <body>
-   <jsp:include page="html/header.html"></jsp:include>
-   <jsp:include page="html/menu.html"></jsp:include>
-   <jsp:include page="../html/footer.html"></jsp:include>
+    <div class="container-fluid">
+        <div class="row">
+            <jsp:include page="html/header.html"/>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <jsp:include page="html/menu.html"/>
+            </div>
+        </div>
+        <div class="row">
+            <jsp:include page="../html/footer.html"/>
+        </div>
+    </div>
    
 </body>
 </html>

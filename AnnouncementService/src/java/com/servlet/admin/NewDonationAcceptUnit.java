@@ -26,6 +26,10 @@ public class NewDonationAcceptUnit extends HttpServlet {
        
         List<Currency> currency = new CurrencyDAO().readCurrency();
         HttpSession session = request.getSession();
+        session.setAttribute("vakifolusturuldu", 0);
+        session.setAttribute("kullanicieklendi", 0);
+        session.setAttribute("hesapeklendi", 0);
+        session.setAttribute("dauUser", null);
         session.setAttribute("curr", currency);
         response.sendRedirect("admin/vakif-olustur.jsp");
         

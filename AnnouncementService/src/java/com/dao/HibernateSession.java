@@ -35,6 +35,7 @@ public class HibernateSession {
                                 .addAnnotatedClass(com.database.BankAccountInfo.class)
                                 .addAnnotatedClass(com.database.DonationAcceptUnit.class)
                                 .addAnnotatedClass(com.database.Donation.class)
+                                .addAnnotatedClass(com.database.DauUser.class)
                                 .buildSessionFactory(serviceRegistry);
         }
         

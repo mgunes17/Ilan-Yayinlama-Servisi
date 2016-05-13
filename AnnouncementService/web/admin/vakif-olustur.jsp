@@ -24,55 +24,108 @@
             <div class="col-md-4"><jsp:include page="html/menu.html"/></div>
             <div class="col-md-8">
                 <div class="text-centers">
-                <h2>Yeni Bağış Kabul Birimi Ekleyin</h2>
-                <p>Lütfen istenen bilgileri eksiksiz giriniz</p> 
-                <form method="post" action="../createdonationunitservlet" >
-                <table id="formTable" class="table">
-                  <tbody>
-                    <tr>
-                      <td>Birimin Adı</td>
-                      <td><input type="text" name="unit_name"/></td>
-                    </tr>
-                    <tr>
-                      <td>Kullanıcı Adı</br></td>
-                      <td><input type="text" name="user_name"/></td>
-                    </tr>
-                    <tr>
-                      <td>Geçici Parola</td>
-                      <td><input type="text" name="password"/></td>
-                    </tr>
-                    <tr>
-                      <td>Banka Adı</br></td>
-                      <td><input type="text" name="bank_name"/></td>
-                    </tr>
-                    <tr>
-                      <td>Şube Adı</br></td>
-                      <td><input type="text" name="name_of_branch"/></td>
-                    </tr>
-                    <tr>
-                      <td>Hesap No</br></td>
-                      <td><input type="text" name="account_number"/></td>
-                    </tr>
-                    <tr>
-                      <td>Para Birimi</td>
-                      <td> <select name="currency">
-                            <c:forEach var="item" items="${curr}">
-                                <option value="${item.id}">
-                                    <c:out value="${item.title}"/>
-                                </option>
-                            </c:forEach>
-                        </select></br></td>
-                    </tr>
-                    <tr>
-                        <td>IBAN</td>
-                        <td><input type="text" name="iban"/></td>
-                    </tr>
-                    <tr><td colspan="2"><button type="submit" class="btn btn-default">Oluştur</button></td></tr>
-
-                  </tbody>
-                </table>
-            </form>
-    </div>
+                    <c:choose>
+                        <c:when test="${vakifolusturuldu eq 1}">
+                           <div class="alert alert-success">
+                                <strong>Başarılı!</strong> Vakıf Oluşturuldu
+                            </div>
+                        </c:when>
+                        <c:when test="${vakifolusturuldu eq 2}">
+                           <div class="alert alert-danger">
+                                <strong>Başarısız!</strong> Vakıf Oluşturulamadı
+                            </div>
+                        </c:when>
+                    </c:choose>
+                    <h3>Yeni Bağış Kabul Birimi Ekleyin</h3>
+                    <p>Lütfen istenen bilgileri eksiksiz giriniz</p> 
+                    <form method="post" action="../createdonationunitservlet" >
+                        <table id="formTable" class="table">
+                          <tbody>
+                            <tr>
+                              <td>Birimin Adı</td>
+                              <td><input type="text" name="unit_name"/></td>
+                            </tr>
+                            <tr><td colspan="2"><button type="submit" class="btn btn-default">Vakıf Oluştur</button></td></tr>
+                          </tbody>
+                        </table>
+                    </form>
+                    <c:choose>
+                        <c:when test="${kullanicieklendi eq 1}">
+                           <div class="alert alert-success">
+                                <strong>Başarılı!</strong> Kullanıcı Oluşturuldu
+                            </div>
+                        </c:when>
+                        <c:when test="${kullanici eq 2}">
+                           <div class="alert alert-danger">
+                                <strong>Başarısız!</strong> Kullanıcı Oluşturulamadı
+                            </div>
+                        </c:when>
+                    </c:choose>
+                    <h3>Kullanıcı Ekleyin
+                        <c:choose>
+                            <c:when test="${dauUser ne null}">
+                               ${dauUser.unitName} için
+                            </c:when>                     
+                        </c:choose>
+                    </h3>
+                    <form method="post" action="../adddauuserservlet">
+                        <table id="formTable" class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Kullanıcı Adı</br></td>
+                                    <td><input type="text" name="user_name"/></td>
+                                </tr>
+                                <tr>
+                                  <td>Geçici Parola</td>
+                                  <td><input type="text" name="password"/></td>
+                                </tr>
+                                <tr><td colspan="2"><button type="submit" class="btn btn-default">Kullanıcı Ekle</button></td></tr>
+                            </tbody>
+                        </table>
+                        
+                    </form>
+                    <h3>Banka Hesabı Ekleyin
+                        <c:choose>
+                            <c:when test="${dauUser ne null}">
+                               ${dauUser.unitName} için
+                            </c:when>                     
+                        </c:choose>
+                    </h3>
+                    <form method="post" action="#">
+                        <table id="formTable" class="table">
+                            <tbody>
+                                <tr>
+                              <td>Banka Adı</br></td>
+                              <td><input type="text" name="bank_name"/></td>
+                            </tr>
+                            <tr>
+                              <td>Şube Adı</br></td>
+                              <td><input type="text" name="name_of_branch"/></td>
+                            </tr>
+                            <tr>
+                              <td>Hesap No</br></td>
+                              <td><input type="text" name="account_number"/></td>
+                            </tr>
+                            <tr>
+                              <td>Para Birimi</td>
+                              <td> <select name="currency">
+                                    <c:forEach var="item" items="${curr}">
+                                        <option value="${item.id}">
+                                            <c:out value="${item.title}"/>
+                                        </option>
+                                    </c:forEach>
+                                </select></br></td>
+                            </tr>
+                            <tr>
+                                <td>IBAN</td>
+                                <td><input type="text" name="iban"/></td>
+                            </tr>
+                            <tr><td colspan="2"><button type="submit" class="btn btn-default">Banka Hesabı Oluştur</button></td></tr>
+                            </tbody>
+                        </table>
+                        
+                    </form>
+                 </div>
             </div>
         </div>
     </div>
