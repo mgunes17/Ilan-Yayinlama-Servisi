@@ -33,8 +33,11 @@ public class CreateDonationUnitServlet extends HttpServlet {
         dau.setBalance(0);
         
         
+        session.setAttribute("kullanicieklendi", 0);
+        session.setAttribute("hesapeklendi", 0);
         
         if(new DonationAcceptUnitDAO().saveUnit(dau)){
+            
             session.setAttribute("vakifolusturuldu", 1);
             session.setAttribute("dauUser", dau);
         }

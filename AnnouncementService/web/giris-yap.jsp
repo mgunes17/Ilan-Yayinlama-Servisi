@@ -19,6 +19,14 @@
     <jsp:include page="html/header.html"></jsp:include>
     <div class="container text-center">
         <form action="logincontrolservlet" method="post">
+            <c:choose>
+                <c:when test="${hata eq 1}">
+                   <div class="alert alert-danger">
+                       <strong>Giriş Başarısız!</strong></br>
+                         Lütfen kullanıcı adı ve parolanızı kontrol edin
+                    </div>
+                </c:when>
+            </c:choose>
             Kullanıcı Adı</br>
             <input type="text" name="username"/></br>
             Parola</br>

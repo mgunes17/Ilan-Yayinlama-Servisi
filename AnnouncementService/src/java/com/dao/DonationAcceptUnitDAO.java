@@ -11,6 +11,51 @@ import org.hibernate.Transaction;
 public class DonationAcceptUnitDAO {
     private Session session;
     
+    public boolean deleteUnit(int unitId){
+        session = HibernateSession.getSessionFactory().openSession();
+        Transaction tx = null;
+        
+        try{
+           
+            //session.delete(dau);
+          
+            
+            Query query = (Query) session.createQuery
+                    ("delete DonationAcceptUnit where id="+unitId);
+            query.executeUpdate();
+        }
+        catch(Exception e){
+            tx.rollback();
+            return false;
+        }
+        finally{
+            session.close();
+        }
+        
+        return true;
+    }
+    
+    public boolean saveBankAccount(BankAccountInfo bai){
+        session = HibernateSession.getSessionFactory().openSession();
+        Transaction tx = null;
+        
+        try{
+            tx = session.beginTransaction();
+            session.save(bai);
+            tx.commit();
+            
+        }
+        catch(Exception e){
+            tx.rollback();
+            return false;
+        }
+        finally{
+            session.close();
+        }
+        
+        return true;
+    }
+    
     public boolean saveDauUser(DauUser user){
         session = HibernateSession.getSessionFactory().openSession();
         Transaction tx = null;
@@ -71,21 +116,4 @@ public class DonationAcceptUnitDAO {
         return unit;
     }
     
-    public void saveBankAccount(BankAccountInfo bai){
-        session = HibernateSession.getSessionFactory().openSession();
-        Transaction tx = null;
-        
-        try{
-            tx = session.beginTransaction();
-            session.save(bai);
-            tx.commit();
-            //kayıt başarılı göster
-        }
-        catch(Exception e){
-            tx.rollback();
-        }
-        finally{
-            session.close();
-        }
-    }
 }

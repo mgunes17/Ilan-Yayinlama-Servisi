@@ -22,7 +22,19 @@
         <div class="row">
             <div class="col-md-3"><jsp:include page="html/menu.html"/></div>
             <div class="col-md-9">
-                 <h3>Tanımlı Bağış Kabul Edebilecek Birimler</h3>
+                <c:choose>
+                    <c:when test="${dausilindi eq 1}">
+                       <div id="alert" class="alert alert-success">
+                            <strong>Başarılı!</strong> Vakıf silindi
+                        </div>
+                    </c:when>
+                    <c:when test="${dausilindi eq 2}">
+                       <div id="alert" class="alert alert-danger">
+                            <strong>Başarısız!</strong> Vakıf silinemedi
+                        </div>
+                    </c:when>
+                </c:choose>
+                <h3>Tanımlı Bağış Kabul Edebilecek Birimler</h3>
                 <table class="displayTable" id="table" border="1">
                     <thead>
                         <tr>
@@ -45,9 +57,13 @@
                                 <td><%--say--%></td>
                                 <td>
                                     <form method="post">
-                                        <input type="hidden" name="packetId" value="${item.userName}" />
+                                        <input type="hidden" name="unitId" value="${item.id}" />
                                         <input type="submit" value="Detaylar" formaction="../">
-                                        <input type="submit" value="Sil" formaction="../">
+                                        <input 
+                                            onclick="return confirm('Paketi silmek istediğinize emin misiniz?')""
+                                            type="submit" 
+                                            value="Sil" 
+                                            formaction="../deletedauservlet">
                                     </form>
                                 </td>
                             </tr>

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,21 +15,28 @@ import javax.persistence.Table;
 @Table(name="bank_account_info")
 public class BankAccountInfo implements Serializable {
     @Id
-    @Column(name="owner_unit_name")
-    private String ownerUnitName;
-    @Column(name="iban")
-    private String iban;
-    @Column(name="bank_name", nullable = false)
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="id")
+    private int id;
+    
+    @Column(name="bank_name", nullable=false)
     private String bankName;
-    @Column(name="branch_bank_name", nullable = false)
+    
+    @Column(name="branch_bank_name", nullable=false)
     private String branchBankName;
-    @Column(name="bank_account_number", nullable = false)
-    private int bankAccountNumber;
-    @Column(name="currency", nullable = false)
-    private int currency;
+    
+    @Column(name="bank_account_number", nullable=false)
+    private String bankAccountNumber;
+    
+    @Column(name="iban", unique=true)
+    private String iban;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="currency", referencedColumnName="id")
+    private Currency currency;
 
     @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="id")
+    @JoinColumn(name="unit_id", referencedColumnName="id")
     private DonationAcceptUnit unit;
 
     public DonationAcceptUnit getUnit() {
@@ -38,20 +47,12 @@ public class BankAccountInfo implements Serializable {
         this.unit = unit;
     }
     
-    public int getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(int currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
-    }
-
-    public String getOwnerUnitName() {
-        return ownerUnitName;
-    }
-
-    public void setOwnerUnitName(String ownerUnitName) {
-        this.ownerUnitName = ownerUnitName;
     }
 
     public String getBankName() {
@@ -70,11 +71,11 @@ public class BankAccountInfo implements Serializable {
         this.branchBankName = branchBankName;
     }
 
-    public int getBankAccountNumber() {
+    public String getBankAccountNumber() {
         return bankAccountNumber;
     }
 
-    public void setBankAccountNumber(int bankAccountNumber) {
+    public void setBankAccountNumber(String bankAccountNumber) {
         this.bankAccountNumber = bankAccountNumber;
     }
 

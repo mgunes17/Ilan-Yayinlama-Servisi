@@ -43,7 +43,10 @@ public class AddDauUserServlet extends HttpServlet {
         dauUser.setPassword(request.getParameter("password"));
         dauUser.setUnit((DonationAcceptUnit) session.getAttribute("dauUser"));
         
-        if(new DonationAcceptUnitDAO().saveDauUser(dauUser)){
+        if(session.getAttribute("dauUser") == null){
+            session.setAttribute("kullanicieklendi", 2);
+        }
+        else if(new DonationAcceptUnitDAO().saveDauUser(dauUser)){
             session.setAttribute("kullanicieklendi", 1);
             session.setAttribute("vakifolusturuldu", 0);
         }

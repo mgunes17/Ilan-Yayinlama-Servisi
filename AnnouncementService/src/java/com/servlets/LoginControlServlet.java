@@ -39,23 +39,25 @@ public class LoginControlServlet extends HttpServlet {
         Session session=factory.openSession();   
         
         Transaction t=session.beginTransaction();
-    
+        HttpSession httpSession = request.getSession();
         Users user = (Users) session.get(Users.class, username); 
         
         if(user != null){
             if(user.getPassword().equals(password)){
                 UserType userType = (UserType) session.get(UserType.class, user.getUserTypeNo());
-                HttpSession httpSession = request.getSession();
+                
                 httpSession.setAttribute("user",user);
                 httpSession.setMaxInactiveInterval(300);
                 response.sendRedirect(userType.getMain_page());
             }
             else{
-                response.sendRedirect("loginerror.jsp");
+                httpSession.setAttribute("hata",1);
+                response.sendRedirect("giris-yap.jsp");
             }
         }
         else{
-            response.sendRedirect("index.jsp");
+            httpSession.setAttribute("hata",1);
+            response.sendRedirect("giris-yap.jsp");
         }
        
         t.commit();//transaction is committed  

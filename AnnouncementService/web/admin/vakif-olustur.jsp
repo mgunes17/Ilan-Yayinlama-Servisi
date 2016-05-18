@@ -26,12 +26,12 @@
                 <div class="text-centers">
                     <c:choose>
                         <c:when test="${vakifolusturuldu eq 1}">
-                           <div class="alert alert-success">
+                           <div id="alert" class="alert alert-success">
                                 <strong>Başarılı!</strong> Vakıf Oluşturuldu
                             </div>
                         </c:when>
                         <c:when test="${vakifolusturuldu eq 2}">
-                           <div class="alert alert-danger">
+                           <div id="alert" class="alert alert-danger">
                                 <strong>Başarısız!</strong> Vakıf Oluşturulamadı
                             </div>
                         </c:when>
@@ -51,12 +51,12 @@
                     </form>
                     <c:choose>
                         <c:when test="${kullanicieklendi eq 1}">
-                           <div class="alert alert-success">
+                           <div id="alert" class="alert alert-success">
                                 <strong>Başarılı!</strong> Kullanıcı Oluşturuldu
                             </div>
                         </c:when>
-                        <c:when test="${kullanici eq 2}">
-                           <div class="alert alert-danger">
+                        <c:when test="${kullanicieklendi eq 2}">
+                           <div id="alert" class="alert alert-danger">
                                 <strong>Başarısız!</strong> Kullanıcı Oluşturulamadı
                             </div>
                         </c:when>
@@ -82,8 +82,19 @@
                                 <tr><td colspan="2"><button type="submit" class="btn btn-default">Kullanıcı Ekle</button></td></tr>
                             </tbody>
                         </table>
-                        
                     </form>
+                    <c:choose>
+                        <c:when test="${hesapeklendi eq 1}">
+                           <div id="alert" class="alert alert-success">
+                                <strong>Başarılı!</strong> Banka hesabı eklendi
+                            </div>
+                        </c:when>
+                        <c:when test="${hesapeklendi eq 2}">
+                           <div id="alert" class="alert alert-danger">
+                                <strong>Başarısız!</strong> Banka hesabı eklenemedi
+                            </div>
+                        </c:when>
+                    </c:choose>
                     <h3>Banka Hesabı Ekleyin
                         <c:choose>
                             <c:when test="${dauUser ne null}">
@@ -91,7 +102,7 @@
                             </c:when>                     
                         </c:choose>
                     </h3>
-                    <form method="post" action="#">
+                    <form method="post" action="../addbankaccountservlet">
                         <table id="formTable" class="table">
                             <tbody>
                                 <tr>

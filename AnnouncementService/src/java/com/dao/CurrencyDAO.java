@@ -9,6 +9,26 @@ import org.hibernate.Transaction;
 public class CurrencyDAO {
     private Session session;
     
+    public Currency getCurrency(int id){
+        session = HibernateSession.getSessionFactory().openSession();
+        Currency currency = null;
+        
+        try{
+            Query query = (Query) session.createQuery
+                ("from Currency where id = "+id);
+            
+            currency = (Currency) query.uniqueResult();
+        }
+        catch(Exception e){
+            System.err.println(e);
+        }
+        finally{
+            session.close();
+        }
+        
+        return currency;
+    }
+    
     public List<Currency> readCurrency(){
         List <Currency> currency = null;
         session = HibernateSession.getSessionFactory().openSession();

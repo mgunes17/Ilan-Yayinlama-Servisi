@@ -1,7 +1,10 @@
 package com.servlet.admin;
 
+import com.dao.CurrencyDAO;
 import com.dao.DonationAcceptUnitDAO;
 import com.database.BankAccountInfo;
+import com.database.Currency;
+import com.database.DonationAcceptUnit;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -25,22 +28,36 @@ public class AddBankAccountServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         
+        HttpSession session = request.getSession();
+        session.setAttribute("vakifolusturuldu", 0);
+        session.setAttribute("kullanicieklendi", 0);
+        
         //Banka hesap bilgisi özelliklerini oku
         BankAccountInfo bai  = new BankAccountInfo();
-        bai.setBankAccountNumber(Integer.parseInt(request.getParameter("account_number")));
+        bai.setBankAccountNumber(request.getParameter("account_number"));
         bai.setBankName(request.getParameter("bank_name"));
         bai.setBranchBankName(request.getParameter("name_of_branch"));
-        bai.setCurrency(Integer.parseInt(request.getParameter("currency")));
+        
+        Currency currency = new CurrencyDAO().getCurrency(
+                Integer.parseInt(request.getParameter("currency")));
+        bai.setCurrency(currency);
         bai.setIban(request.getParameter("iban"));
+
+        bai.setUnit((DonationAcceptUnit) session.getAttribute("dauUser"));
         
-        //duzenlenecek
-        //bai.setOwnerUnitName(dau.getUnitName());
+          
+        if(session.getAttribute("dauUser") == null){
+            session.setAttribute("hesapeklendi", 2);
+        }
+        else if(new DonationAcceptUnitDAO().saveBankAccount(bai)){
+            session.setAttribute("hesapeklendi", 1);
+            session.setAttribute("vakifolusturuldu", 0);
+        }
+        else{
+            session.setAttribute("hesapeklendi", 2);
+        }
         
-        HttpSession session = request.getSession();
-        session.setAttribute("hesapeklendi", 1);
-        new DonationAcceptUnitDAO().saveBankAccount(bai);
-        
-        response.sendRedirect("newdonationacceptunit");
+        response.sendRedirect("admin/vakif-olustur.jsp");
     }
 
 }

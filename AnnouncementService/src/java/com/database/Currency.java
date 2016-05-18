@@ -18,6 +18,10 @@ public class Currency implements Serializable {
 
     public Currency(){}
     
+    public Currency(int id){
+        this.id = id;
+    }
+    
     public int getId() {
         return id;
     }
