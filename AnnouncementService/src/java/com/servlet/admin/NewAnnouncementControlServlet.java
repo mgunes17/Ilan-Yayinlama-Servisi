@@ -29,7 +29,7 @@ public class NewAnnouncementControlServlet extends HttpServlet {
         List<AnnouncementType> announcementTypes = new AnnouncementDAO().getAnnouncementTypes();
         HttpSession session = request.getSession();
         session.setAttribute("annType", announcementTypes);
-        response.sendRedirect("company/newannouncement.jsp");
+        response.sendRedirect("company/ilan-olustur.jsp");
     }
 
 }

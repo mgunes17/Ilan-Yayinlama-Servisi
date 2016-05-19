@@ -11,6 +11,26 @@ import org.hibernate.Transaction;
 public class DonationAcceptUnitDAO {
     private Session session;
     
+    public DonationAcceptUnit getUnit(int id){
+        session = HibernateSession.getSessionFactory().openSession();
+        DonationAcceptUnit dau = null;
+        
+        try{
+            Query query = (Query) session.createQuery
+                ("from DonationAcceptUnit where id = "+id);
+            
+            dau = (DonationAcceptUnit) query.uniqueResult();
+        }
+        catch(Exception e){
+            System.err.println(e);
+        }
+        finally{
+            session.close();
+        }
+        
+        return dau;
+    }
+    
     public boolean deleteUnit(int unitId){
         session = HibernateSession.getSessionFactory().openSession();
         Transaction tx = null;

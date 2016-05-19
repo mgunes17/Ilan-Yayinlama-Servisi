@@ -30,6 +30,11 @@
                                  <strong>Başarılı!</strong>Paket başarıyla oluşturuldu.
                             </div>
                         </c:when>
+                        <c:when test="${olusturuldu eq 2}">
+                           <div class="alert alert-danger">
+                                 <strong>Başarısız!</strong>Paket oluşturulamadı.
+                            </div>
+                        </c:when>
                     </c:choose>
                 
                     <h2>Yeni İlan Paketi Oluştur</h2>
@@ -49,7 +54,7 @@
                               <td>Kazancın ilişkilendirileceği bağış kabul birimini seçiniz</td>
                               <td> <select name="unit">
                                     <c:forEach var="item" items="${dau}">
-                                        <option value="${item.userName}">
+                                        <option value="${item.id}">
                                             <c:out value="${item.unitName}"/>
                                         </option>
                                     </c:forEach>

@@ -1,10 +1,13 @@
 package com.database;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,12 +25,21 @@ public class Announcement {
     private String content;
     @Column(name="number_of_page_views")
     private int numberOfPageViews;
-    @Column(name="state")
-    private int state; // ilan durumu oluşturulunca pasif, şikayette beklenen, aktif vs
-    @Column(name="owner_company", nullable=false)
-    private String ownerCompany; 
-    @Column(name="owner_packet")
-    private int ownerPacket;
+    
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="state", referencedColumnName="id")
+    private AnnouncementState state; // ilan durumu oluşturulunca pasif, şikayette beklenen, aktif vs
+     
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="owner_company", referencedColumnName="user_name")
+    private Company ownerCompany; 
+    
+    
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="owner_packet", referencedColumnName="packet_id")
+    private AnnouncementPacket ownerPacket;
+    
+    
     @Column(name="announcement_type", nullable=false)
     private int announcementType; //staj, freelance, part time, full time
     
@@ -81,27 +93,27 @@ public class Announcement {
         this.numberOfPageViews = numberOfPageViews;
     }
 
-    public int getState() {
+    public AnnouncementState getState() {
         return state;
     }
 
-    public void setState(int state) {
+    public void setState(AnnouncementState state) {
         this.state = state;
     }
 
-    public String getOwnerCompany() {
+    public Company getOwnerCompany() {
         return ownerCompany;
     }
 
-    public void setOwnerCompany(String ownerCompany) {
+    public void setOwnerCompany(Company ownerCompany) {
         this.ownerCompany = ownerCompany;
     }
 
-    public int getOwnerPacket() {
+    public AnnouncementPacket getOwnerPacket() {
         return ownerPacket;
     }
 
-    public void setOwnerPacket(int ownerPacket) {
+    public void setOwnerPacket(AnnouncementPacket ownerPacket) {
         this.ownerPacket = ownerPacket;
     }
 }

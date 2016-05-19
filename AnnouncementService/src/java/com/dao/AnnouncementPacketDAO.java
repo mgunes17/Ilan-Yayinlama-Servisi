@@ -68,7 +68,7 @@ public class AnnouncementPacketDAO {
           
     }
     
-    public void savePacket(AnnouncementPacket packet){
+    public boolean savePacket(AnnouncementPacket packet){
         session = HibernateSession.getSessionFactory().openSession();
         Transaction tx = null;
         
@@ -79,9 +79,12 @@ public class AnnouncementPacketDAO {
         }
         catch(Exception e){
             tx.rollback();
+            return false;
         }
         finally{
             session.close();
         }
+        
+        return true;
     }
 }

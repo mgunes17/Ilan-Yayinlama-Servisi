@@ -13,6 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Şirket Kayıt</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/mycss.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
@@ -22,7 +23,7 @@
         <h2>Şirket kayıt</h2>
         <p>Lütfen istenen bilgileri eksiksiz giriniz</p> 
         <form method="post" action="companysaveservlet" >
-            <table class="table">
+            <table id="formTable" class="table">
               <tbody>
                 <tr>
                   <td>Kullanıcı Adınızı Belirleyiniz</td>
@@ -49,7 +50,11 @@
                   <td></td>
                 </tr>
     
-                <tr><td colspan="2"><input type="submit" value="Kayıt Ol"></td></tr>
+                <tr><td colspan="2">
+                    <button type="submit" class="btn btn-default">
+                        Kayıt Ol</td>
+                    </button>
+                </tr>
 
               </tbody>
             </table>

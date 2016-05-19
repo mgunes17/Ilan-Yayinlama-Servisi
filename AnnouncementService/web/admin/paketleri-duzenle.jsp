@@ -50,8 +50,8 @@
                                 <td>${item.announcementCount}</td>
                                 <td>${item.activeTime}</td>
                                 <td>${item.price}</td>
-                                <td>${item.currency}</td>
-                                <td>${item.donateAcceptUnit}
+                                <td>${item.currency.title}</td>
+                                <td>${item.donateAcceptUnit.unitName}
                                 <td><fmt:formatDate value="${item.lastDateUsed}" /></td>
                                 <td>${item.condition}</td>
                                 <td>

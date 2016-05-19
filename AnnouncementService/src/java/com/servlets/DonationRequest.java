@@ -37,7 +37,7 @@ public class DonationRequest extends HttpServlet {
        
         donation.setCompanyUsername(companyUsername);
         donation.setPacketId(packetId);
-        donation.setDonationAcceptUnitUsername(packet.getDonateAcceptUnit());
+        donation.setDonationAcceptUnitUsername(packet.getDonateAcceptUnit().getUnitName());
         
         new DonationDAO().saveDonation(donation);
         

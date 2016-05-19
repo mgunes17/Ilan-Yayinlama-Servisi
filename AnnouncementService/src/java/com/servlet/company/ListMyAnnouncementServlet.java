@@ -1,7 +1,8 @@
-package com.servlets;
+package com.servlet.company;
 
-import com.dao.AnnouncementPacketDAO;
-import com.database.AnnouncementPacket;
+import com.dao.AnnouncementDAO;
+import com.database.Announcement;
+import com.database.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -12,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "DisplayPacketsToCompany", urlPatterns = {"/displaypacketstocompany"})
-public class DisplayPacketsToCompany extends HttpServlet {
+@WebServlet(name = "ListMyAnnouncementServlet", urlPatterns = {"/listmyannouncementservlet"})
+public class ListMyAnnouncementServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -24,12 +25,18 @@ public class DisplayPacketsToCompany extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                List<AnnouncementPacket> packets = new AnnouncementPacketDAO()
-                .displayPackets();
+        
+        //sadece ona ait bilgileri getirmek icin oturum bilgisi kullan
+        //şimdilik şirket id elle ver
         
         HttpSession session = request.getSession();
-        session.setAttribute("packets", packets);
-        response.sendRedirect("company/announcementpackets.jsp");
+        Users user = (Users) session.getAttribute("user");
+        
+        List<Announcement> myAnnouncements = new AnnouncementDAO().
+                getMyAnnouncements(user.getUserName());
+        
+        session.setAttribute("announcement", myAnnouncements);
+        response.sendRedirect("company/myannouncements.jsp");
     }
 
 }

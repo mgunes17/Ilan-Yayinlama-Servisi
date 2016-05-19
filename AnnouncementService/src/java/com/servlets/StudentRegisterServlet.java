@@ -54,7 +54,7 @@ public class StudentRegisterServlet extends HttpServlet {
         HttpSession httpSession = request.getSession();
         
         httpSession.setAttribute("d", department);
-        response.sendRedirect("ogrencikayit.jsp");
+        response.sendRedirect("ogrenci-kayit.jsp");
     }
 
 

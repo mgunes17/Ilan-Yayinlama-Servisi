@@ -1,7 +1,11 @@
 package com.servlet.admin;
 
 import com.dao.AnnouncementPacketDAO;
+import com.dao.CurrencyDAO;
+import com.dao.DonationAcceptUnitDAO;
 import com.database.AnnouncementPacket;
+import com.database.Currency;
+import com.database.DonationAcceptUnit;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
@@ -32,19 +36,32 @@ public class CreateAnnouncementPackageServlet extends HttpServlet {
         System.out.println(expired);
         
         AnnouncementPacket packet = new AnnouncementPacket();
+        Currency curr = new CurrencyDAO().getCurrency(
+                Integer.parseInt(request.getParameter("currency")));
+        
+        DonationAcceptUnit dau = new DonationAcceptUnitDAO().getUnit(
+                Integer.parseInt(request.getParameter("unit")));
+
+        
         packet.setTitle(request.getParameter("packet_name"));
-        packet.setDonateAcceptUnit(request.getParameter("unit"));
+        packet.setDonateAcceptUnit(dau);
         packet.setActiveTime(Integer.parseInt(request.getParameter("activate_date")));
         packet.setLastDateUsed(expired);
         packet.setAnnouncementCount(Integer.parseInt(
                 request.getParameter("announcement_number")));
-        packet.setCurrency(Integer.parseInt(request.getParameter("currency")));
+        packet.setCurrency(curr);
         packet.setPrice(Integer.parseInt(request.getParameter("price")));
         packet.setCondition(request.getParameter("condition"));
         
-        new AnnouncementPacketDAO().savePacket(packet);
-        
         HttpSession session = request.getSession();
+        
+        if(new AnnouncementPacketDAO().savePacket(packet)){
+            session.setAttribute("olusturuldu", 1);
+        }
+        else{
+            session.setAttribute("olusturuldu", 2);
+        }
+        
         session.setAttribute("olusturuldu", 1);
         response.sendRedirect("admin/paket-olustur.jsp");
     }

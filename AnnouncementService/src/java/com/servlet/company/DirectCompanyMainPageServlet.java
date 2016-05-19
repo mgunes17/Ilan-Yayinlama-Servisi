@@ -1,4 +1,4 @@
-package com.servlets;
+package com.servlet.company;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

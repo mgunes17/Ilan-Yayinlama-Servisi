@@ -1,12 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.servlet.admin;
+package com.servlet.company;
 
 import com.dao.AnnouncementDAO;
+import com.dao.AnnouncementStateDAO;
+import com.dao.AnnouncementTypeDAO;
+import com.dao.CompanyDAO;
 import com.database.Announcement;
+import com.database.AnnouncementState;
+import com.database.AnnouncementType;
+import com.database.Company;
 import com.database.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,10 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author must
- */
 @WebServlet(name = "NewAnnouncementServlet", urlPatterns = {"/newannouncementservlet"})
 public class NewAnnouncementServlet extends HttpServlet {
 
@@ -36,22 +33,25 @@ public class NewAnnouncementServlet extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
-        
         Users user = (Users) session.getAttribute("user");
         Announcement announcement = new Announcement();
+        AnnouncementType annType = new AnnouncementTypeDAO().getType(1);
+        Company company = new CompanyDAO().getCompany(user.getUserName());
+        AnnouncementState state = new AnnouncementStateDAO().getState(1);
+        
         announcement.setTitle(request.getParameter("title"));
         announcement.setBrief(request.getParameter("brief"));
         announcement.setContent(request.getParameter("content"));
-        announcement.setOwnerCompany(user.getUserName());
-        announcement.setOwnerPacket(0); //yeni oluşturulan ilanın paketi de olabilir
-        announcement.setState(1); //yeni oluşturulduğu için pasif. olmaya da bilir
+        announcement.setOwnerCompany(company);
+        //announcement.setOwnerPacket(); //yeni oluşturulan ilanın paketi de olabilir
+        announcement.setState(state); //yeni oluşturulduğu için pasif. olmaya da bilir
         
         //tip jstl ile okunacak
         announcement.setAnnouncementType(Integer.parseInt(request.getParameter("type")));
         
         new AnnouncementDAO().createAnnouncement(announcement);
         
-        response.sendRedirect("newannouncementcreated.jsp");
+        response.sendRedirect("company/ilan-olustur.jsp");
     }
 
 }

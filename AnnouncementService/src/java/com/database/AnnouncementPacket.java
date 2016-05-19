@@ -3,11 +3,14 @@ package com.database;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,12 +30,16 @@ public class AnnouncementPacket implements Serializable {
     private Timestamp lastDateUsed;
     @Column(name="active_time", nullable=false)
     private int activeTime;
-    @Column(name="currency", nullable=false)
-    private int currency;
     @Column(name="condition", nullable=false)
     private String condition;
-    @Column(name="donate_accept_unit", nullable=false)
-    private String donateAcceptUnit;
+    
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="currency", referencedColumnName="id")
+    private Currency currency;
+    
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="donate_accept_unit", referencedColumnName="id")
+    private DonationAcceptUnit donateAcceptUnit;
 
     public AnnouncementPacket(){
         
@@ -78,11 +85,11 @@ public class AnnouncementPacket implements Serializable {
         this.activeTime = activeTime;
     }
 
-    public int getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(int currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
     }
 
@@ -94,11 +101,11 @@ public class AnnouncementPacket implements Serializable {
         this.condition = condition;
     }
 
-    public String getDonateAcceptUnit() {
+    public DonationAcceptUnit getDonateAcceptUnit() {
         return donateAcceptUnit;
     }
 
-    public void setDonateAcceptUnit(String donateAcceptUnit) {
+    public void setDonateAcceptUnit(DonationAcceptUnit donateAcceptUnit) {
         this.donateAcceptUnit = donateAcceptUnit;
     }
     
